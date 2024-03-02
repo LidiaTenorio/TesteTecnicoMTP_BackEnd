@@ -65,7 +65,7 @@ namespace TesteTecnicoMTP.API.Controllers
             try
             {
                 await _tarefaService.CadastrarTarefa(tarefa);
-                return Ok("Tarefa cadastrada com sucesso!");
+                return Ok(new { message = "Tarefa cadastrada com sucesso!"});
             }
             catch (InvalidOperationException ex)
             {
@@ -83,7 +83,7 @@ namespace TesteTecnicoMTP.API.Controllers
             try
             {
                 await _tarefaService.AtualizarTarefa(tarefa);
-                return Ok("Tarefa atualizada com sucesso!");
+                return Ok(new { message = "Tarefa atualizada com sucesso!"});
             }
             catch (Exception ex)
             {
@@ -105,7 +105,7 @@ namespace TesteTecnicoMTP.API.Controllers
                 tarefaDb.Ativo = false;
 
                 await _tarefaService.AtualizarTarefa(tarefaDb);
-                return Ok("Tarefa atualizada com sucesso!");
+                return Ok(new { message = "Tarefa deletada com sucesso!"});
             }
             catch (Exception ex)
             {
@@ -127,7 +127,7 @@ namespace TesteTecnicoMTP.API.Controllers
                 tarefaDb.Concluido = true;
 
                 await _tarefaService.AtualizarTarefa(tarefaDb);
-                return Ok("Tarefa atualizada com sucesso!");
+                return Ok(new { message = "Tarefa concluida com sucesso!"});
             }
             catch (Exception ex)
             {
