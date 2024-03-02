@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteTecnicoMTP.Application", "TesteTecnicoMTP.Application\TesteTecnicoMTP.Application.csproj", "{3D650DD5-660E-4B71-839C-C70FF579D450}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6D502C64-8B09-457B-8A87-6C314A26B867} = {6D502C64-8B09-457B-8A87-6C314A26B867}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteTecnicoMTP.API", "TesteTecnicoMTP\TesteTecnicoMTP.API.csproj", "{2C1AE1E7-186C-444C-B0F8-A936E36C4C8D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteTecnicoMTP.Domain", "TesteTecnicoMTP.Domain\TesteTecnicoMTP.Domain.csproj", "{6D502C64-8B09-457B-8A87-6C314A26B867}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteTecnicoMTP.Infra.Data", "TesteTecnicoMTP.Infra.Data\TesteTecnicoMTP.Infra.Data.csproj", "{4A90120A-D66E-4999-A6AE-677D9302089C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6D502C64-8B09-457B-8A87-6C314A26B867} = {6D502C64-8B09-457B-8A87-6C314A26B867}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TesteTecnicoMTP.Infra.IoC", "TesteTecnicoMTP.Infra.IoC\TesteTecnicoMTP.Infra.IoC.csproj", "{86851AB7-7053-43D7-B4F5-8ED7B5BB3C01}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3D650DD5-660E-4B71-839C-C70FF579D450} = {3D650DD5-660E-4B71-839C-C70FF579D450}
+		{4A90120A-D66E-4999-A6AE-677D9302089C} = {4A90120A-D66E-4999-A6AE-677D9302089C}
+		{6D502C64-8B09-457B-8A87-6C314A26B867} = {6D502C64-8B09-457B-8A87-6C314A26B867}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D650DD5-660E-4B71-839C-C70FF579D450}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D650DD5-660E-4B71-839C-C70FF579D450}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D650DD5-660E-4B71-839C-C70FF579D450}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D650DD5-660E-4B71-839C-C70FF579D450}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C1AE1E7-186C-444C-B0F8-A936E36C4C8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C1AE1E7-186C-444C-B0F8-A936E36C4C8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C1AE1E7-186C-444C-B0F8-A936E36C4C8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C1AE1E7-186C-444C-B0F8-A936E36C4C8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D502C64-8B09-457B-8A87-6C314A26B867}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D502C64-8B09-457B-8A87-6C314A26B867}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D502C64-8B09-457B-8A87-6C314A26B867}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D502C64-8B09-457B-8A87-6C314A26B867}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A90120A-D66E-4999-A6AE-677D9302089C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A90120A-D66E-4999-A6AE-677D9302089C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A90120A-D66E-4999-A6AE-677D9302089C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A90120A-D66E-4999-A6AE-677D9302089C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86851AB7-7053-43D7-B4F5-8ED7B5BB3C01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86851AB7-7053-43D7-B4F5-8ED7B5BB3C01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86851AB7-7053-43D7-B4F5-8ED7B5BB3C01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86851AB7-7053-43D7-B4F5-8ED7B5BB3C01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5CD81D54-3B6D-4AD6-A621-FB0646130D95}
+	EndGlobalSection
+EndGlobal
