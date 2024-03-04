@@ -1,12 +1,12 @@
-#Nome Projeto
-Teste Tecnico MTP
+## Nome Projeto
+# Teste Tecnico MTP
 
 Projeto para cadastrar, listar, concluir e deletar tarefas.
 
-Pré-Requisitos
+## Pré-Requisitos
 - [.NET Core SDK](https://www.microsoft.com/en-us/sql-server/sql-server-downloads) instalado
 
-Configuração do Projeto
+## Configuração do Projeto
 1. Clonar o Repositório:
    https://github.com/LidiaTenorio/TesteTecnicoMTP_BackEnd.git
 
