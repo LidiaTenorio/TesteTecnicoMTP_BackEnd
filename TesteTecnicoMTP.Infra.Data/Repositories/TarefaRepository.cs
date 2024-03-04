@@ -18,58 +18,63 @@ namespace TesteTecnicoMTP.Infra.Data.Repositories
             _context = context;
         }
 
+        public async Task CadastrarTarefa(Tarefa tarefaDb)
+        {
+            await _context.Tarefas.AddAsync(tarefaDb);
+            _context.SaveChanges();
+        }
+
         public async Task<IEnumerable<Tarefa>> BuscarTarefas()
         {
             var tarefas = await _context.Tarefas.Where(t => t.Ativo).OrderByDescending(x => x.DataCadastro).ToListAsync();
             return tarefas;
         }
 
-        public async Task CadastrarTarefa(Tarefa tarefaDb)
-        {
-            await _context.Tarefas.AddAsync(tarefaDb);
-            _context.SaveChanges();
-
-        }
-
         public async Task<Tarefa> BuscarTarefaPorId(Guid id)
         {
-            var tarefa = await _context.Tarefas.FirstOrDefaultAsync(t => t.Id == id);
+            var tarefa = await _context.Tarefas.FirstOrDefaultAsync(t => t.Id == id && t.Ativo);
+            if (tarefa == null)
+                throw new InvalidOperationException("Tarefa não encontrada!");
+
             return tarefa;
         }
 
-        public async Task AtualizarTarefa(Tarefa tarefaDbNova)
+        public async Task AtualizarTarefa(Tarefa tarefaDb)
         {
-            var tarefaDb = await BuscarTarefaPorId((Guid)tarefaDbNova.Id);
+            var tarefa = await BuscarTarefaPorId(tarefaDb.Id);
 
-            if (tarefaDb == null)
-                throw new InvalidOperationException("Tarefa não encontrada!");
+            tarefa.Descricao = tarefaDb.Descricao;
+            tarefa.DataAtualizacao = DateTime.Now;
 
-            try
-            {
-                if (_context.Entry(tarefaDb).State != EntityState.Detached)
-                {
-                    tarefaDb.DataAtualizacao = DateTime.Now;
-                    tarefaDb.Concluido = tarefaDbNova.Concluido;
-                    tarefaDb.Descricao = tarefaDbNova.Descricao;
-                    tarefaDb.Ativo = tarefaDbNova.Ativo;
-                    await _context.SaveChangesAsync();
-                }
-                else
-                {
-                    _context.Attach(tarefaDb);
-                    tarefaDb.DataAtualizacao = DateTime.Now;
-                    tarefaDb.Descricao = tarefaDbNova.Descricao;
-                    tarefaDb.Concluido = tarefaDbNova.Concluido;
-                    tarefaDb.Ativo = tarefaDbNova.Ativo;
-                    _context.Update(tarefaDb);
-                    await _context.SaveChangesAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+            _context.Update(tarefa);
+            await _context.SaveChangesAsync();
+        }
+        public async Task InativarTarefa(Guid id)
+        {
+            var tarefa = await BuscarTarefaPorId(id);
 
+            tarefa.Ativo = false;
+            tarefa.DataAtualizacao = DateTime.Now;
+
+            _context.Update(tarefa);
+            await _context.SaveChangesAsync();
+        }
+        public async Task ConcluirTarefa(Guid id)
+        {
+            var tarefa = await BuscarTarefaPorId(id);
+
+            tarefa.Concluido = true;
+            tarefa.DataAtualizacao = DateTime.Now;
+
+            _context.Update(tarefa);
+            await _context.SaveChangesAsync();
+        }
+        public async Task DeletarTarefa(Guid id)
+        {
+            var tarefa = await BuscarTarefaPorId(id);
+
+            _context.Remove(tarefa);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -9,9 +9,12 @@ namespace TesteTecnicoMTP.Domain.Interfaces
 {
     public interface ITarefaRepository
     {
-        Task AtualizarTarefa(Tarefa tarefaDbNova);
+        Task CadastrarTarefa(Tarefa tarefaDb);
         Task<Tarefa> BuscarTarefaPorId(Guid id);
         Task<IEnumerable<Tarefa>> BuscarTarefas();
-        Task CadastrarTarefa(Tarefa tarefaDb);
+        Task AtualizarTarefa(Tarefa tarefaDbNova);
+        Task InativarTarefa(Guid id);
+        Task ConcluirTarefa(Guid id);
+        Task DeletarTarefa(Guid id);
     }
 }

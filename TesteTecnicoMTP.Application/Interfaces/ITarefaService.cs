@@ -9,9 +9,12 @@ namespace TesteTecnicoMTP.Application.Interfaces
 {
     public interface ITarefaService
     {
-        Task AtualizarTarefa(TarefaDTO tarefa);
-        Task<TarefaDTO> BuscarTarefaPorId(Guid id);
-        Task<(IEnumerable<TarefaDTO>, int)> BuscarTarefas(int skip, int take);
         Task CadastrarTarefa(TarefaDTO tarefa);
+        Task<(IEnumerable<TarefaDTO>, int)> BuscarTarefas();
+        Task<TarefaDTO> BuscarTarefaPorId(Guid id);
+        Task AtualizarTarefa(TarefaDTO tarefa);
+        Task InativarTarefa(Guid id);
+        Task ConcluirTarefa(Guid id);
+        Task DeletarTarefa(Guid id);
     }
 }

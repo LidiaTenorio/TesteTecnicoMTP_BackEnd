@@ -21,34 +21,31 @@ namespace TesteTecnicoMTP.Application.Services
             _mapper = mapper;
         }
 
-        public async Task<(IEnumerable<TarefaDTO>, int)> BuscarTarefas(int skip, int take)
-        {
-            try
-            {
-                var tarefasDb = await _tarefaRepository.BuscarTarefas();
-                var tarefasDTO = _mapper.Map<IEnumerable<TarefaDTO>>(tarefasDb).ToList();
-                var tarefasDTOPaginado = tarefasDTO.Skip(skip).Take(take);
-                return (tarefasDTOPaginado, tarefasDTO.Count);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Erro ao buscar tarefa: {ex.Message}");
-                throw;
-            }
-            
-        }
-
         public async Task CadastrarTarefa(TarefaDTO tarefa)
         {
             try
             {
                 var tarefaDb = _mapper.Map<Tarefa>(tarefa);
-
                 await _tarefaRepository.CadastrarTarefa(tarefaDb);
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Erro ao cadastrar tarefa: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task<(IEnumerable<TarefaDTO>, int)> BuscarTarefas()
+        {
+            try
+            {
+                var tarefasDb = await _tarefaRepository.BuscarTarefas();
+                var tarefasDTO = _mapper.Map<IEnumerable<TarefaDTO>>(tarefasDb).ToList();
+                return (tarefasDTO, tarefasDTO.Count);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao buscar tarefa: {ex.Message}");
                 throw;
             }
         }
@@ -82,5 +79,45 @@ namespace TesteTecnicoMTP.Application.Services
                 throw;
             }
         }
+
+        public async Task InativarTarefa(Guid id)
+        {
+            try
+            {
+                await _tarefaRepository.InativarTarefa(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao buscar tarefa por Id: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task ConcluirTarefa(Guid id)
+        {
+            try
+            {
+                await _tarefaRepository.ConcluirTarefa(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao buscar tarefa por Id: {ex.Message}");
+                throw;
+            }
+        }
+
+        public async Task DeletarTarefa(Guid id)
+        {
+            try
+            {
+                await _tarefaRepository.DeletarTarefa(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao buscar tarefa por Id: {ex.Message}");
+                throw;
+            }
+        }
+
     }
 }

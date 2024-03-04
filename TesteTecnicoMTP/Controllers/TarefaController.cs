@@ -15,15 +15,31 @@ namespace TesteTecnicoMTP.API.Controllers
             _tarefaService = tarefaService;
         }
 
-        #region GET
-
+        #region POST
         [ProducesResponseType(500)]
-        [HttpGet()]
-        public async Task<ActionResult<IEnumerable<TarefaDTO>>> BuscarTarefas(int skip = 0, int take = 20)
+        [HttpPost()]
+        public async Task<ActionResult> CadastrarTarefa(TarefaDTO tarefa)
         {
             try
             {
-                var tarefas = await _tarefaService.BuscarTarefas(skip, take);
+                await _tarefaService.CadastrarTarefa(tarefa);
+                return Ok(new { message = "Tarefa cadastrada com sucesso!" });
+            }
+            catch (InvalidOperationException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        #endregion
+
+        #region GET
+        [ProducesResponseType(500)]
+        [HttpGet()]
+        public async Task<ActionResult<IEnumerable<TarefaDTO>>> BuscarTarefas()
+        {
+            try
+            {
+                var tarefas = await _tarefaService.BuscarTarefas();
 
                 if(tarefas.Item1 == null)
                     return NotFound("Nenhum tarefa encontrada!");
@@ -43,36 +59,13 @@ namespace TesteTecnicoMTP.API.Controllers
             try
             {
                 var tarefa = await _tarefaService.BuscarTarefaPorId(id);
-
-                if (tarefa == null)
-                    return NotFound("Tarefa não encontrada!");
-
                 return Ok(tarefa);
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Erro ao buscar tarefas: " + ex.Message);
+                return StatusCode(500, "Erro ao buscar tarefa por Id: " + ex.Message);
             }
         }
-
-        #endregion
-
-        #region POST
-        [ProducesResponseType(500)]
-        [HttpPost()]
-        public async Task<ActionResult> CadastrarTarefa(TarefaDTO tarefa)
-        {
-            try
-            {
-                await _tarefaService.CadastrarTarefa(tarefa);
-                return Ok(new { message = "Tarefa cadastrada com sucesso!"});
-            }
-            catch (InvalidOperationException ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
         #endregion
 
         #region PUT
@@ -87,7 +80,7 @@ namespace TesteTecnicoMTP.API.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Erro ao buscar tarefas: " + ex.Message);
+                return StatusCode(500, "Erro ao atualizar tarefas: " + ex.Message);
             }
         }
 
@@ -97,19 +90,12 @@ namespace TesteTecnicoMTP.API.Controllers
         {
             try
             {
-                var tarefaDb = await _tarefaService.BuscarTarefaPorId(id);
-
-                if (tarefaDb == null)
-                    return NotFound("Tarefa não encontrada!");
-
-                tarefaDb.Ativo = false;
-
-                await _tarefaService.AtualizarTarefa(tarefaDb);
-                return Ok(new { message = "Tarefa deletada com sucesso!"});
+                await _tarefaService.InativarTarefa(id);
+                return Ok(new { message = "Tarefa inativada com sucesso!"});
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Erro ao buscar tarefas: " + ex.Message);
+                return StatusCode(500, "Erro ao inativar tarefas: " + ex.Message);
             }
         }
 
@@ -119,22 +105,31 @@ namespace TesteTecnicoMTP.API.Controllers
         {
             try
             {
-                var tarefaDb = await _tarefaService.BuscarTarefaPorId(id);
-
-                if (tarefaDb == null)
-                    return NotFound("Tarefa não encontrada!");
-
-                tarefaDb.Concluido = true;
-
-                await _tarefaService.AtualizarTarefa(tarefaDb);
+                await _tarefaService.ConcluirTarefa(id);
                 return Ok(new { message = "Tarefa concluida com sucesso!"});
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Erro ao buscar tarefas: " + ex.Message);
+                return StatusCode(500, "Erro ao concluir tarefas: " + ex.Message);
             }
         }
         #endregion
 
+        #region DELETE
+        [ProducesResponseType(500)]
+        [HttpDelete()]
+        public async Task<ActionResult> DeletarTarefa(Guid id)
+        {
+            try
+            {
+                await _tarefaService.DeletarTarefa(id);
+                return Ok(new { message = "Tarefa Deletada com sucesso!" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Erro ao deletar tarefas: " + ex.Message);
+            }
+        }
+        #endregion
     }
 }
