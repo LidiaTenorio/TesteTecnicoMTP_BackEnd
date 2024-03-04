@@ -12,13 +12,13 @@ Projeto para cadastrar, listar, concluir e deletar tarefas.
 
 ## Configurações do Banco de dados
   1. Executar Script do Banco de Dados:
-    Abra o SQL Server Management Studio.
-    Conecte-se à sua instância do SQL Server.
-    Abra e execute o arquivo ScriptEstruturaDB.ipynb localizado na pasta inicial do projeto.
+     Abra o SQL Server Management Studio.
+     Conecte-se à sua instância do SQL Server.
+     Abra e execute o arquivo ScriptEstruturaDB.ipynb localizado na pasta inicial do projeto.
 
-  2. Configurar a String de Conexão do Banco de Dados:
-    Abra o arquivo appsettings.json.
-    Atualize a ConnectionStrings com os detalhes da sua conexão com o SQL Server. Alterar apenas o Data Source.
+  3. Configurar a String de Conexão do Banco de Dados:
+     Abra o arquivo appsettings.json.
+     Atualize a ConnectionStrings com os detalhes da sua conexão com o SQL Server. Alterar apenas o Data Source.
 
-    Exemplo: "DefaultConnection": "Data Source=[SEUBANCO];Initial Catalog=TesteTecnicoMTP;Integrated Security=True;TrustServerCertificate=True"
+    Exemplo: "DefaultConnection": "Data Source=SEUBANCO;Initial Catalog=TesteTecnicoMTP;Integrated Security=True;TrustServerCertificate=True"
 
