@@ -27,7 +27,7 @@ namespace TesteTecnicoMTP.API.Controllers
             }
             catch (InvalidOperationException ex)
             {
-                return BadRequest(ex.Message);
+                return StatusCode(500, "Erro ao cadastrar tarefas: " + ex.Message);
             }
         }
         #endregion
