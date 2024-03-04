@@ -18,5 +18,6 @@ Projeto para cadastrar, listar, concluir e deletar tarefas.
 
   2. Configurar a String de Conexão do Banco de Dados:
     Abra o arquivo appsettings.json.
-    Atualize a seção "DefaultConnection" com os detalhes da sua conexão com o SQL Server.
+    Atualize a seção "DefaultConnection" com os detalhes da sua conexão com o SQL Server. Alterar o Data Source.
+    Exemplo: "DefaultConnection": "Data Source=LIDIA;Initial Catalog=TesteTecnicoMTP;Integrated Security=True;TrustServerCertificate=True"
 
