@@ -10,7 +10,7 @@ Projeto para cadastrar, listar, concluir e deletar tarefas.
 1. Clonar o Repositório:
    https://github.com/LidiaTenorio/TesteTecnicoMTP_BackEnd.git
 
-2. Configurações do Banco de dados
+## Configurações do Banco de dados
   1. Executar Script do Banco de Dados:
     Abra o SQL Server Management Studio.
     Conecte-se à sua instância do SQL Server.
